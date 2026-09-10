@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_13_125600) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_14_141833) do
   create_table "activities", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "lesson_id", null: false
@@ -84,10 +84,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_13_125600) do
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.integer "current_language_id", null: false
+    t.integer "current_language_id"
     t.string "email"
-    t.string "nome"
-    t.string "password"
+    t.string "name"
+    t.string "password_hash"
+    t.string "password_salt"
     t.datetime "updated_at", null: false
     t.index ["current_language_id"], name: "index_users_on_current_language_id"
   end
@@ -102,5 +103,5 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_13_125600) do
   add_foreign_key "sections", "levels"
   add_foreign_key "user_languages", "languages"
   add_foreign_key "user_languages", "users"
-  add_foreign_key "users", "current_languages"
+  add_foreign_key "users", "languages", column: "current_language_id"
 end

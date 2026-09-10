@@ -23,7 +23,14 @@
   </head>
 
   <body class="w-full min-h-screen">
-    <%= render "layouts/header" %>
+    <div id="flash">
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+      <% end %>
+    </div>
+    <% if controller_name != "sessions" && controller_name != "users" %>
+      <%= render "layouts/header" %>
+    <% end %>
     <main>
       <%= yield %>
     </main>

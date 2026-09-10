@@ -1,3 +1,27 @@
 class User < ApplicationRecord
-  belongs_to :current_language, class_name: "language"
+  before_save :encrypt_password
+
+  attr_accessor :password, :password_confirmation
+
+  validates :name, presence: true
+  validates :email, presence: true, uniqueness: true
+  validates :password, presence: true, on: :create
+  
+  belongs_to :current_language, class_name: "Language", foreign_key: :current_language_id, optional: true
+
+  def encrypt_password
+    if password.present?
+      self.password_salt = BCrypt::Engine.generate_salt
+      self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
+    end
+  end
+
+  def self.authenticate(email, password) 
+    user = User.find_by(email: email)
+    if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
+      user
+    else
+      nil
+    end
+  end
 end

@@ -68,3 +68,13 @@ group :test do
 end
 
 gem "rails_icons", "~> 1.9"
+
+gem "simple_form", "~> 5.4"
+
+gem "guard", "~> 2.20"
+gem "guard-livereload", "~> 2.5"
+gem "guard-rspec", "~> 4.7"
+
+gem "guard-minitest", "~> 3.0"
+
+gem "bcrypt", "~> 3.1"

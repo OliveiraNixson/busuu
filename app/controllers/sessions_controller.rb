@@ -8,14 +8,14 @@ class SessionsController < ApplicationController
     respond_to do |format|
       if user.present?
         session[:user_id] = user.id
-        format.html{ redirect_to pages_path, notice: "Logged in!" }
-        format.turbo_stream{ redirect_to pages_path, notice: "Logged in!" }
+        format.html { redirect_to pages_path, notice: "Logged in!" }
+        format.turbo_stream { redirect_to pages_path, notice: "Logged in!" }
       else
-        format.html{ render :new, status: :unprocessable_entity }
-        format.turbo_stream do 
+        format.html { render :new, status: :unprocessable_entity }
+        format.turbo_stream do
           flash.now[:alert] = "Invalid email or password!"
           render turbo_stream: [
-            turbo_stream.append("flash", partial:"layouts/flash"),
+            turbo_stream.append("flash", partial: "layouts/flash"),
             turbo_stream.update("form", "")
           ]
         end

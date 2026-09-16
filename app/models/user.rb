@@ -6,7 +6,7 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
   validates :password, presence: true, on: :create
-  
+
   belongs_to :current_language, class_name: "Language", foreign_key: :current_language_id, optional: true
 
   def encrypt_password
@@ -16,7 +16,7 @@ class User < ApplicationRecord
     end
   end
 
-  def self.authenticate(email, password) 
+  def self.authenticate(email, password)
     user = User.find_by(email: email)
     if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
       user

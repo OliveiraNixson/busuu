@@ -1,9 +1,23 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+admin_portuguese:
+  user: admin
+  language: portuguese
 
-one:
-  user: one
-  language: one
+admin_english:
+  user: admin
+  language: english
 
-two:
-  user: two
-  language: two
+operator_english:
+  user: operator
+  language: english
+
+supervisor_spanish:
+  user: supervisor
+  language: spanish
+
+monitor_french:
+  user: monitor
+  language: french
+
+manager_german:
+  user: manager
+  language: german

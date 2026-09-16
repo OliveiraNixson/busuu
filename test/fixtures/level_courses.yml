@@ -1,9 +1,11 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+portuguese_beginner:
+  course: portuguese_course
+  level: beginner
 
-one:
-  course: one
-  level: one
+english_beginner:
+  course: english_course
+  level: beginner
 
-two:
-  course: two
-  level: two
+spanish_intermediate:
+  course: spanish_course
+  level: intermediate

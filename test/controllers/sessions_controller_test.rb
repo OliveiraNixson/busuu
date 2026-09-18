@@ -6,9 +6,9 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get new" do
-    get new_user_path 
+    get new_user_path
     assert_response :success
-  end 
+  end
 
 
   test "should get create" do

@@ -1,13 +1,34 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+admin:
+  name: "Administrador"
+  email: "admin@example.com"
+  password_hash: "hashed_password"
+  password_salt: "salt123"
+  current_language: portuguese
 
-one:
-  nome: MyString
-  email: MyString
-  password: MyString
-  current_language: one
+operator:
+  name: "Operador"
+  email: ""
+  password_hash: "hashed_password"
+  password_salt: "salt456"
+  current_language: english
 
-two:
-  nome: MyString
-  email: MyString
-  password: MyString
-  current_language: two
+supervisor:
+  name: "Supervisor"
+  email: "supervisor@example.com"
+  password_hash: "hashed_password"
+  password_salt: "salt789"
+  current_language: spanish
+
+monitor:
+  name: ""
+  email: "monitor@example.com"
+  password_hash: "hashed_password"
+  password_salt: "salt101"
+  current_language: french
+
+manager:
+  name: "Gerente"
+  email: "manager@example.com"
+  password_hash: "hashed_password"
+  password_salt: "salt202"
+  current_language: german

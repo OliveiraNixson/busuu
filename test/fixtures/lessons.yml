@@ -1,13 +1,17 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+portuguese_intro:
+  name: "Primeira Lição"
+  section: intro_portuguese
+  course: portuguese_course
+  language: portuguese
 
-one:
-  name: MyString
-  section: one
-  course: one
-  language: one
+english_intro:
+  name: "First Lesson"
+  section: intro_english
+  course: english_course
+  language: english
 
-two:
-  name: MyString
-  section: two
-  course: two
-  language: two
+spanish_intro:
+  name: "Primera Lección"
+  section: intro_spanish
+  course: spanish_course
+  language: spanish

@@ -1,9 +1,11 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+intro_portuguese:
+  name: "Introdução"
+  level: beginner
 
-one:
-  name: MyString
-  level: one
+intro_english:
+  name: "Introduction"
+  level: beginner
 
-two:
-  name: MyString
-  level: two
+intro_spanish:
+  name: "Introducción"
+  level: intermediate

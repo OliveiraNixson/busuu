@@ -1,11 +1,24 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  code: MyString
-  name: MyString
+beginner:
+  code: "A1"
+  name: "Beginner"
   order: 1
 
-two:
-  code: MyString
-  name: MyString
-  order: 1
+elementary:
+  code: "A2"
+  name: "Elementary"
+  order: 2
+
+intermediate:
+  code: "B1"
+  name: "Intermediate"
+  order: 3
+
+upper_intermediate:
+  code: "B2"
+  name: "Upper Intermediate"
+  order: 4
+
+advanced:
+  code: "C1"
+  name: "Advanced"
+  order: 5

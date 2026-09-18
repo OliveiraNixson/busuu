@@ -1,11 +1,14 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+portuguese_course:
+  name: "Portuguese Basics"
+  description: "Curso básico de Português"
+  language: portuguese
 
-one:
-  name: MyString
-  description: MyString
-  language: one
+english_course:
+  name: "English Basics"
+  description: "Basic English Course"
+  language: english
 
-two:
-  name: MyString
-  description: MyString
-  language: two
+spanish_course:
+  name: "Spanish Basics"
+  description: "Curso básico de Espanhol"
+  language: spanish

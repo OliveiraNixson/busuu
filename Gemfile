@@ -5,7 +5,7 @@ gem "rails", "~> 8.1.3", ">= 8.1.3.1"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
 # Use sqlite3 as the database for Active Record
-gem "sqlite3", ">= 2.1"
+gem "sqlite3", ">= 2.9.5"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
@@ -65,6 +65,7 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+  gem "minitest", "~> 5.25"
 end
 
 gem "rails_icons", "~> 1.9"
@@ -78,3 +79,5 @@ gem "guard-rspec", "~> 4.7"
 gem "guard-minitest", "~> 3.0"
 
 gem "bcrypt", "~> 3.1"
+
+

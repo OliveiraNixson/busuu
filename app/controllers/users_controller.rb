@@ -10,7 +10,6 @@ class UsersController < ApplicationController
       if @user.save
         format.html{ redirect_to pages_path, notice: "Thanks, for your signing up!" }
         format.turbo_stream{ redirect_to pages_path, notice: "Thanks, for your signing up!" }
-        end
       else
         flash.now[:alert] = "Invalid parameters."
         format.html{ render :new, status: :unprocessable_entity }

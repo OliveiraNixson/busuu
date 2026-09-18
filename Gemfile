@@ -63,8 +63,6 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem "capybara"
-  gem "selenium-webdriver"
   gem "minitest", "~> 5.25"
 end
 
@@ -79,5 +77,3 @@ gem "guard-rspec", "~> 4.7"
 gem "guard-minitest", "~> 3.0"
 
 gem "bcrypt", "~> 3.1"
-
-

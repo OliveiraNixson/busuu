@@ -2,8 +2,8 @@
 
 one:
   user: one
-  languages: one
+  language: one
 
 two:
   user: two
-  languages: two
+  language: two

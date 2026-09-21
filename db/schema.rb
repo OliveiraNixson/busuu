@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_21_113748) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_21_181045) do
   create_table "activities", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "lesson_id", null: false
@@ -75,10 +75,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_21_113748) do
 
   create_table "user_languages", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.integer "languages_id", null: false
+    t.integer "language_id", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
-    t.index ["languages_id"], name: "index_user_languages_on_languages_id"
+    t.index ["language_id"], name: "index_user_languages_on_language_id"
     t.index ["user_id"], name: "index_user_languages_on_user_id"
   end
 
@@ -100,6 +100,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_21_113748) do
   add_foreign_key "level_courses", "courses"
   add_foreign_key "level_courses", "levels"
   add_foreign_key "sections", "levels"
-  add_foreign_key "user_languages", "languages", column: "languages_id"
+  add_foreign_key "user_languages", "languages"
   add_foreign_key "user_languages", "users"
 end

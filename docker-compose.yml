@@ -1,0 +1,25 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    # Remove o arquivo de PID antigo (se existir) e inicia o servidor do Rails
+    command: bash -c "rm -f tmp/pids/server.pid && bin/rails server -b 0.0.0.0"
+    ports:
+      - "3000:3000"
+    volumes:
+      # Sincroniza seu código local com o contêiner em tempo real
+      - .:/rails
+      # Salva as gems instaladas fora do diretório sincronizado para não sujar o host
+      - bundle_data:/usr/local/bundle
+      # Salva o histórico de comandos digitados dentro do bash do contêiner
+      - bash_history:/root/.bash_history
+    environment:
+      - RAILS_ENV=development
+      - HISTFILE=/root/.bash_history/history
+    stdin_open: true
+    tty: true
+
+volumes:
+  bundle_data:
+  bash_history:

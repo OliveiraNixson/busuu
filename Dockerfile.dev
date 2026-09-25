@@ -1,0 +1,23 @@
+FROM docker.io/library/ruby:4.0.6-slim
+
+# Instala dependências nativas para compilar gems e rodar o SQLite/Rails
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y \
+      build-essential \
+      git \
+      libvips \
+      pkg-config \
+      curl \
+      sqlite3 \
+      libsqlite3-dev \
+      bash && \
+    rm -rf /var/lib/apt/lists /var/cache/apt/archives
+
+WORKDIR /rails
+
+# Atualiza e instala o Bundler
+RUN gem install bundler
+
+EXPOSE 3000
+
+CMD ["bin/rails", "server", "-b", "0.0.0.0"]

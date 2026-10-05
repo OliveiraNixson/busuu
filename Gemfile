@@ -67,3 +67,7 @@ group :test do
   # gem "selenium-webdriver"
   gem "minitest", "~> 5.25"
 end
+
+gem "simple_form", "~> 5.4"
+
+gem "bcrypt", "~> 3.1"

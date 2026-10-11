@@ -1,4 +1,114 @@
-<div>
-  <h1 class="font-bold text-4xl">Pages#index</h1>
-  <p>Find me in app/views/pages/index.html.erb</p>
+<div class="mx-auto w-full max-w-7xl space-y-8 pb-12">
+  <section class="flex flex-col gap-3 border-b border-slate-200 pb-6 sm:flex-row sm:items-end sm:justify-between">
+    <div>
+      <p class="text-xs font-bold uppercase tracking-widest text-emerald-700">Your learning space</p>
+      <h1 class="mt-2 text-3xl font-bold text-slate-900">Overview</h1>
+      <p class="mt-2 max-w-2xl text-sm text-slate-600">Explore the courses, levels, and lessons available to study.</p>
+    </div>
+    <span class="inline-flex w-fit items-center gap-2 rounded-full bg-emerald-50 px-3 py-1.5 text-sm font-semibold text-emerald-800">
+      <span class="size-2 rounded-full bg-emerald-500"></span>
+      Learning catalog
+    </span>
+  </section>
+
+  <section aria-label="Catalog summary" class="grid gap-4 sm:grid-cols-3">
+    <article class="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+      <div class="flex items-center justify-between">
+        <p class="text-sm font-medium text-slate-600">Available courses</p>
+        <span class="flex size-10 items-center justify-center rounded-lg bg-blue-50 text-blue-700"><i class="ti ti-books text-xl" aria-hidden="true"></i></span>
+      </div>
+      <p class="mt-5 text-3xl font-bold text-slate-900"><%= @course_count %></p>
+      <p class="mt-1 text-xs text-slate-500">Languages to explore</p>
+    </article>
+
+    <article class="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+      <div class="flex items-center justify-between">
+        <p class="text-sm font-medium text-slate-600">Learning levels</p>
+        <span class="flex size-10 items-center justify-center rounded-lg bg-amber-50 text-amber-700"><i class="ti ti-stairs-up text-xl" aria-hidden="true"></i></span>
+      </div>
+      <p class="mt-5 text-3xl font-bold text-slate-900"><%= @level_count %></p>
+      <p class="mt-1 text-xs text-slate-500">Structured stages</p>
+    </article>
+
+    <article class="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+      <div class="flex items-center justify-between">
+        <p class="text-sm font-medium text-slate-600">Lessons in catalog</p>
+        <span class="flex size-10 items-center justify-center rounded-lg bg-rose-50 text-rose-700"><i class="ti ti-notebook text-xl" aria-hidden="true"></i></span>
+      </div>
+      <p class="mt-5 text-3xl font-bold text-slate-900"><%= @lesson_count %></p>
+      <p class="mt-1 text-xs text-slate-500">Available content</p>
+    </article>
+  </section>
+
+  <section aria-labelledby="current-course-title" class="overflow-hidden rounded-lg border border-emerald-200 bg-emerald-50">
+    <div class="grid gap-6 p-6 sm:grid-cols-[1fr_auto] sm:items-center sm:p-8">
+      <div class="flex items-start gap-4">
+        <span class="flex size-12 shrink-0 items-center justify-center rounded-full bg-white text-emerald-700 shadow-sm"><i class="ti ti-player-play text-2xl" aria-hidden="true"></i></span>
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-emerald-800">Pick up where you left off</p>
+          <h2 id="current-course-title" class="mt-1 text-xl font-bold text-slate-900">Your current course</h2>
+          <p class="mt-2 max-w-xl text-sm leading-6 text-slate-600">No course selected yet. Browse the catalog and choose where to start.</p>
+        </div>
+      </div>
+      <a href="#courses" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-emerald-700 px-5 text-sm font-semibold text-white transition hover:bg-emerald-800 focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2">
+        Browse courses <i class="ti ti-arrow-down-right text-lg" aria-hidden="true"></i>
+      </a>
+    </div>
+  </section>
+
+  <div class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+    <section aria-labelledby="levels-title" class="space-y-4">
+      <div class="flex items-end justify-between border-b border-slate-200 pb-3">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-amber-700">Learning path</p>
+          <h2 id="levels-title" class="mt-1 text-xl font-bold text-slate-900">Levels</h2>
+        </div>
+        <span class="text-sm text-slate-500"><%= @level_count %> total</span>
+      </div>
+
+      <% if @levels.any? %>
+        <ol class="divide-y divide-slate-200">
+          <% @levels.each do |level| %>
+            <li class="flex items-center gap-4 py-4">
+              <span class="flex size-10 shrink-0 items-center justify-center rounded-full bg-amber-100 text-sm font-bold text-amber-800"><%= level.order || "·" %></span>
+              <div class="min-w-0 flex-1">
+                <p class="truncate font-semibold text-slate-800"><%= level.name.presence || "Level #{level.code || level.order}" %></p>
+                <p class="mt-0.5 text-xs text-slate-500"><%= level.code.presence || "Stage #{level.order}" %></p>
+              </div>
+              <span class="shrink-0 text-right text-sm font-semibold text-slate-700"><%= @level_course_counts.fetch(level.id, 0) %> courses</span>
+            </li>
+          <% end %>
+        </ol>
+      <% else %>
+        <p class="py-6 text-sm text-slate-500">Levels will appear here once they are added to the catalog.</p>
+      <% end %>
+    </section>
+
+    <section id="courses" aria-labelledby="courses-title" class="space-y-4">
+      <div class="flex items-end justify-between border-b border-slate-200 pb-3">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-blue-700">Get started</p>
+          <h2 id="courses-title" class="mt-1 text-xl font-bold text-slate-900">Available courses</h2>
+        </div>
+        <span class="text-sm text-slate-500"><%= @course_count %> total</span>
+      </div>
+
+      <% if @courses.any? %>
+        <div class="divide-y divide-slate-200">
+          <% @courses.each do |course| %>
+            <article class="flex items-center gap-4 py-4">
+              <span class="flex size-11 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-700"><i class="ti ti-language text-xl" aria-hidden="true"></i></span>
+              <div class="min-w-0 flex-1">
+                <h3 class="truncate font-semibold text-slate-900"><%= course.name.presence || "Untitled course" %></h3>
+                <p class="mt-0.5 truncate text-sm text-slate-500"><%= course.language.name.presence || "Language not specified" %></p>
+              </div>
+              <span class="shrink-0 text-right text-sm text-slate-600"><%= @lesson_counts.fetch(course.id, 0) %> lessons</span>
+            </article>
+          <% end %>
+        </div>
+      <% else %>
+        <p class="py-6 text-sm text-slate-500">Courses will appear here once they are added to the catalog.</p>
+      <% end %>
+    </section>
+  </div>
 </div>

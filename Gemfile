@@ -54,6 +54,10 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  gem 'guard-livereload', '~> 2.5', require: false
+
+  gem "rack-livereload"
 end
 
 group :development do
@@ -71,3 +75,4 @@ end
 gem "simple_form", "~> 5.4"
 
 gem "bcrypt", "~> 3.1"
+gem "rails_icons", "~> 1.10"

@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [ :update, :destroy]
+  before_action :set_user, only: [ :update, :destroy ]
 
   # GET /users
   def index
     @users = User.all
-    
+
     # Omite campos sensíveis do retorno JSON
-    render json: @users.as_json(except: [:password_hash, :password_salt])
+    render json: @users.as_json(except: [ :password_hash, :password_salt ])
   end
 
   def new
@@ -19,11 +19,19 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html{ redirect_to pages_path, notice: "Wellcome #{@user.name}" }
-        format.json{ render json: @user.as_json(except: [:password_hash, :password_salt]), status: :created }
+        format.html { redirect_to pages_path, notice: "Wellcome #{@user.name}" }
+        format.json { render json: @user.as_json(except: [ :password_hash, :password_salt ]), status: :created }
+        format.turbo_stream do
+          flash.now[:notice] = "Wellcome #{@user.name}"
+          render turbo_stream: turbo_stream.append("flash", partial: "layouts/flash")
+        end
       else
-        format.html{ render :new }
-        format.json{ render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity }
+        format.html { render :new }
+        format.json { render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity }
+        format.turbo_stream do
+          flash.now[:alert] = @user.errors.full_messages.join(", ")
+          render turbo_stream: turbo_stream.append("flash", partial: "layouts/flash")
+        end
       end
     end
   end
@@ -31,7 +39,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/:id
   def update
     if @user.update(user_update_params)
-      render json: @user.as_json(except: [:password_hash, :password_salt])
+      render json: @user.as_json(except: [ :password_hash, :password_salt ])
     else
       render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
     end
@@ -48,7 +56,7 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    render json: { error: 'Usuário não encontrado' }, status: :not_found
+    render json: { error: "Usuário não encontrado" }, status: :not_found
   end
 
   # Strong Parameters para criação

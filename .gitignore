@@ -9,6 +9,23 @@
 
 # Ignore all environment files.
 /.env*
+!/.env.example
+!/.env.sample
+
+# Ignore local tooling and editor artifacts.
+/.rubymate/
+/.ruby-lsp/
+/.idea/
+/.byebug_history
+/.DS_Store
+**/.DS_Store
+*.swp
+*~
+
+# Ignore local dependencies and test coverage output.
+/node_modules/
+/vendor/bundle/
+/coverage/
 
 # Ignore all logfiles and tempfiles.
 /log/*

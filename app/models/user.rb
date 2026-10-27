@@ -6,6 +6,9 @@ class User < ApplicationRecord
   validates :email, presence: true
   validates :email, uniqueness: true
 
+  has_many :user_languages
+  has_many :languages, through: :user_languages
+
   def encrypt_password
     return unless password.present?
 

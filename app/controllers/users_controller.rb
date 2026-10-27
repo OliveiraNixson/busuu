@@ -51,6 +51,11 @@ class UsersController < ApplicationController
     head :no_content
   end
 
+  def languages
+    @learning_languages = current_user.languages
+    @not_learning_languages = Language.all - @learning_languages
+  end
+
   private
 
   def set_user

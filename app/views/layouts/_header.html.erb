@@ -15,7 +15,7 @@
 
     <div class="flex items-center gap-3">
 
-      <%= link_to "#", class: "flex justify-center items-center w-8 aspect-square overflow-hidden rounded-full bg-blue-500" do %>
+      <%= link_to languages_users_path, data: { turbo_frame: "modalcontainer" }, class: "flex justify-center items-center w-8 aspect-square overflow-hidden rounded-full bg-blue-500" do %>
         <span class="fi fi-br block !size-full rounded-full !bg-cover"
               role="img"
               aria-label="Brasil">
@@ -28,7 +28,7 @@
         </div>
       <% end %>
 
-      <%= link_to "#", class: "flex justify-center items-center w-8 aspect-square rounded-full bg-blue-500" do %>
+      <%= link_to settings_path, data: { turbo_frame: "modalcontainer" }, class: "flex justify-center items-center w-8 aspect-square rounded-full bg-blue-500" do %>
         <div class="text-white font-bold">
           <i class="ti ti-menu"></i>
         </div>

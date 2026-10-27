@@ -26,11 +26,11 @@ guard 'livereload' do
     png: :png,
     gif: :gif,
     jpg: :jpg,
-    jpeg: :jpeg,
+    jpeg: :jpeg
     # less: :less, # uncomment if you want LESS stylesheets done in browser
   }
 
-  rails_view_exts = %w(erb haml slim)
+  rails_view_exts = %w[erb haml slim]
 
   # file types LiveReload may optimize refresh for
   compiled_exts = extensions.values.uniq
@@ -106,7 +106,7 @@ guard :rspec, cmd: "bundle exec rspec" do
   dsl.watch_spec_files_for(ruby.lib_files)
 
   # Rails files
-  rails = dsl.rails(view_extensions: %w(erb haml slim))
+  rails = dsl.rails(view_extensions: %w[erb haml slim])
   dsl.watch_spec_files_for(rails.app_files)
   dsl.watch_spec_files_for(rails.views)
 

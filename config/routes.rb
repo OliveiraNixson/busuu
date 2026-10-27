@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   resources :pages, only: [ :index, :new, :create ]
-  resources :sessions, only: [ :new, :create] do
+  resources :sessions, only: [ :new, :create ] do
     collection do
       get :logout
     end

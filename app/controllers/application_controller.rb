@@ -19,16 +19,16 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :current_permission
-  end
+end
 
   def authorize
     if current_permission.allow?(params[:controller], params[:action])
       respond_to do |format|
-        format.html{ redirect_to root_path, alert: "You are not authorized to access" }
-        format.turbo_stream do 
+        format.html { redirect_to root_path, alert: "You are not authorized to access" }
+        format.turbo_stream do
           flash.now[:alert] = "You are not authorized to access"
-          render turbo_stream: [turbo_stream.append("flash", partial: "layouts/flash")]
+          render turbo_stream: [ turbo_stream.append("flash", partial: "layouts/flash") ]
         end
     end
-  end
+    end
 end

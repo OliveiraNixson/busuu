@@ -12,6 +12,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  
   test "should get create" do
     post sessions_path, params: { user: { email: "test@example.com", password: "password" } }
     assert_redirected_to pages_path

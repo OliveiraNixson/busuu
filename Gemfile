@@ -55,7 +55,7 @@ group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
 
-  gem 'guard-livereload', '~> 2.5', require: false
+  gem "guard-livereload", "~> 2.5", require: false
 
   gem "rack-livereload"
 end

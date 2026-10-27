@@ -1,0 +1,54 @@
+
+<%= turbo_frame_tag "modalcontainer" do %>
+   <%= render "layouts/remote_modal" do %>
+      <div class="flex flex-col gap-8 p-2">
+
+         <div class="flex flex-col items-start gap-4">
+            <h2 class="text-xl font-bold text-gray-800">
+               Learning
+            </h2> 
+
+            <div class="flex w-full flex-col gap-4">
+               <% Language.all.each do |language| %>
+                  <div class="flex items-center gap-3 rounded-xl p-2 transition-colors duration-200 hover:bg-gray-100 cursor-pointer">
+                     <%= link_to languages_users_path, data: { turbo_frame: "modalcontainer" }, class: "flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-blue-500 ring-2 ring-gray-100 transition-transform duration-200 hover:scale-105 hover:ring-blue-200" do %>
+                        <span class="fi fi-<%= language.flag %> block !size-full rounded-full !bg-cover"
+                              role="img"
+                              aria-label="<%= language.name %>">
+                        </span>
+                     <% end %>
+
+                     <span class="text-lg font-medium text-gray-700 transition-colors duration-200 hover:text-blue-600">
+                        <%= language.name %>
+                     </span>
+                  </div>
+               <% end %>
+            </div>
+         </div>
+
+         <div class="flex flex-col items-start gap-4">
+            <h2 class="text-xl font-bold text-gray-800">
+               Learn other language
+            </h2>
+
+            <div class="flex w-full flex-col gap-2">
+               <% Language.all.each do |language| %>
+                  <div class="flex items-center gap-3 rounded-xl p-2 transition-colors duration-200 hover:bg-gray-100">
+                     <%= link_to languages_users_path, data: { turbo_frame: "modalcontainer" }, class: "flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-blue-500 ring-2 ring-gray-100 transition-transform duration-200 hover:scale-105 hover:ring-blue-200" do %>
+                        <span class="fi fi-<%= language.flag %> block !size-full rounded-full !bg-cover"
+                              role="img"
+                              aria-label="<%= language.name %>">
+                        </span>
+                     <% end %>
+
+                     <span class="text-lg font-medium text-gray-700 transition-colors duration-200 hover:text-blue-600">
+                        <%= language.name %>
+                     </span>
+                  </div>
+               <% end %>
+            </div>
+         </div>
+
+      </div>
+   <% end %>
+<% end %>

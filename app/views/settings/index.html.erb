@@ -1,0 +1,29 @@
+<%= turbo_frame_tag "modalcontainer" do %>
+  <%= render "layouts/remote_modal" do %>
+    <section class="w-full max-w-md bg-white p-6 text-slate-900 sm:p-8">
+      <div class="mb-6 flex items-start justify-between gap-4 border-b border-slate-200 pb-5">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-wider text-blue-700">Workspace</p>
+          <h1 class="mt-1 text-2xl font-bold">Settings</h1>
+        </div>
+      </div>
+
+      <nav aria-label="Settings sections" class="divide-y divide-slate-200">
+        <% ["Courses", "Languages", "Levels", "Activities"].each do |title| %>
+          <details class="group py-1">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold marker:content-none">
+              <%= title %>
+              <i class="ti ti-chevron-down text-slate-500 transition-transform group-open:rotate-180" aria-hidden="true"></i>
+            </summary>
+            <div class="flex gap-3 pb-4 pl-3 mb-4">
+              <%= link_to "Create", "#", class: "inline-flex items-center gap-2 rounded-md border border-gray-300 bg-blue-700 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-blue-800" %>
+              <%= link_to "Edit", "#", class: "inline-flex items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50" %>
+            </div>
+          </details>
+        <% end %>
+      </nav>
+
+        <%= link_to "Logout", logout_sessions_path, method: :get, data: { confirm: "Are you sure you want to logout?", turbo_frame: "_top" }, title: "Logout will be connected when its route is added", class: "rounded-md border border-gray-200 px-3 py-2 mt-5 text-sm font-medium text-slate-400" %>
+    </section>
+  <% end %>
+<% end %>

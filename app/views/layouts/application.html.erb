@@ -17,16 +17,23 @@
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.49.0/dist/tabler-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css" />
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <div id="flash" class="fixed top-5 right-5 z-50 w-full max-w-sm space-y-3">
+  <body class="relative">
+    <div id="flash" class="fixed top-10 right-5 z-50 w-full max-w-sm space-y-3">
       <%= render "layouts/flash" %>
     </div>
+    <% if current_user && controller_name != "sessions" && (controller_name != "users" && action_name != "new") %>
+      <%= render "layouts/header" %>
+    <% end %>
+
+    <%= turbo_frame_tag "modalcontainer" %>
+
     <main class="container mx-auto mt-28 px-5 flex">
       <%= yield %>
     </main>

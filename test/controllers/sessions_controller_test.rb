@@ -6,7 +6,6 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     @user.save
   end
 
-
   test "should get new" do
     get root_path
     assert_response :success

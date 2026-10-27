@@ -10,11 +10,6 @@ class SessionsController < ApplicationController
         session[:user_id] = user.id
         format.html { redirect_to pages_path, notice: "Logged in!" }
         format.json
-        format.turbo_stream do
-          render turbo_stream: [
-            turbo_stream.append("flash", partial: "layouts/flash", locals: { notice: "Logged in!" })
-          ]
-        end
       else
         flash[:alert] = "Email or login incorrect"
         format.html { render :new, status: :unprocessable_entity }
@@ -25,6 +20,19 @@ class SessionsController < ApplicationController
             turbo_stream.replace("session-form", partial: "sessions/form")
           ]
         end
+      end
+    end
+  end
+
+  def logout
+    session[:user_id] = nil
+    respond_to do |format|
+      format.html { redirect_to root_path, notice: "Logged out!" }
+      format.json
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.append("flash", partial: "layouts/flash", locals: { notice: "Logged out!" })
+        ]
       end
     end
   end

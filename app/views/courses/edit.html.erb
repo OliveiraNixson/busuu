@@ -1,0 +1,5 @@
+<%= turbo_frame_tag "modalcontainer" do %>
+    <%= render "layouts/float_modal" do %>
+      <%= render "form", course: @course %>
+    <% end %>
+<% end %>

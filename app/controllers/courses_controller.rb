@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
-  before_action :set_language, only: [:edit, :update]
-  before_action :set_course, only: [:show, :update]
+  before_action :set_language, only: [ :edit, :update ]
+  before_action :set_course, only: [ :show, :update ]
 
   def index
     @courses = Course.includes(:language).order(:name)
@@ -49,7 +49,7 @@ class CoursesController < ApplicationController
           render turbo_stream: [
                       turbo_stream.update("remote-modal", ""),
                       turbo_stream.append("flash", partial: "layouts/flash")
-                    ]     
+                    ]
         end
       else
         format.html { render :edit, status: :unprocessable_entity }

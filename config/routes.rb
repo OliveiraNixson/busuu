@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     end
   end
   resources :languages do
-    resources :courses, only: [:edit, :update]
+    resources :courses, only: [ :edit, :update ]
   end
   resources :settings, only: [ :index ]
   resources :courses, only: [ :index, :show, :new, :create ]

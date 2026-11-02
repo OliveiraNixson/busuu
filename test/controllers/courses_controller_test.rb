@@ -22,14 +22,14 @@ class CoursesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get create" do
-    assert_difference('Course.count') do
+    assert_difference("Course.count") do
       post courses_path, params: { course: { name: "New Course", description: "A new course description", language_id: @course.language_id } }
     end
   end
 
   test "should update course" do
     puts "Updating course with ID: #{@course.id} and language ID: #{@course.language_id}"
-    patch language_course_path(@course.language, @course), params: { course: { name: "New Course", description: "A new course descri  ption"} }
+    patch language_course_path(@course.language, @course), params: { course: { name: "New Course", description: "A new course descri  ption" } }
 
     assert_redirected_to course_path(@course)
   end

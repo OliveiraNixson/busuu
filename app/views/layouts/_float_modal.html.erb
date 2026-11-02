@@ -1,0 +1,9 @@
+<div id="remote-modal" class="" data-controller="remote-modal" data-remote-modal-target="modal">
+    <div class="flex flex-row justify-end fixed right-0 left-0 top-0 z-50 flex flex-row items-center min-h-screen">
+        <div class="w-full flex items-center justify-between bg-black/50 min-h-screen" data-action="click->remote-modal#close:self">
+            <div class="min-w-64 min-h-64 mx-auto bg-white rounded-lg">
+                <%= yield %>
+            </div>
+        </div>
+    </div>
+</div>

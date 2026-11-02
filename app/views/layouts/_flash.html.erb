@@ -10,7 +10,10 @@
       end
   %>
 
-  <div class="mb-4 rounded border p-4 <%= css_class %>">
-    <%= message %>
+  <div class="mb-4 flex z-50 items-start justify-between gap-3 rounded border p-4 <%= css_class %>" data-controller="dismiss">
+    <span><%= message %></span>
+    <button type="button" class="shrink-0 rounded p-1 opacity-70 transition hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-current" aria-label="Dismiss notification" title="Dismiss notification" data-action="click->dismiss#remove">
+      <i class="ti ti-x" aria-hidden="true"></i>
+    </button>
   </div>
 <% end %>

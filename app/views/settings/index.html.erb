@@ -9,18 +9,49 @@
       </div>
 
       <nav aria-label="Settings sections" class="divide-y divide-slate-200">
-        <% ["Courses", "Languages", "Levels", "Activities"].each do |title| %>
-          <details class="group py-1">
-            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold marker:content-none">
-              <%= title %>
-              <i class="ti ti-chevron-down text-slate-500 transition-transform group-open:rotate-180" aria-hidden="true"></i>
-            </summary>
-            <div class="flex gap-3 pb-4 pl-3 mb-4">
-              <%= link_to "Create", "#", class: "inline-flex items-center gap-2 rounded-md border border-gray-300 bg-blue-700 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-blue-800" %>
-              <%= link_to "Edit", "#", class: "inline-flex items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50" %>
-            </div>
-          </details>
-        <% end %>
+        <details class="group py-1">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold marker:content-none">
+            Courses
+            <i class="ti ti-chevron-down text-slate-500 transition-transform group-open:rotate-180" aria-hidden="true"></i>
+          </summary>
+          <div class="mb-4 flex gap-3 pb-4 pl-3">
+            <%= link_to "Create", new_course_path, data:{ turbo_frame: "modalcontainer" }, class: "inline-flex items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50" %>
+            <%= link_to "Edit", languages_path, data: { turbo_frame: "modalcontainer" }, class: "inline-flex items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50" %>
+          </div>
+        </details>
+
+        <details class="group py-1">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold marker:content-none">
+            Languages
+            <i class="ti ti-chevron-down text-slate-500 transition-transform group-open:rotate-180" aria-hidden="true"></i>
+          </summary>
+          <div class="mb-4 flex gap-3 pb-4 pl-3">
+            <%= link_to "Create", "#", class: "inline-flex items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-gray-500" %>
+            <%= link_to "Edit", "#", class: "inline-flex items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50" %>
+          </div>
+        </details>
+
+        <details class="group py-1">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold marker:content-none">
+            Levels
+            <i class="ti ti-chevron-down text-slate-500 transition-transform group-open:rotate-180" aria-hidden="true"></i>
+          </summary>
+          <div class="mb-4 flex gap-3 pb-4 pl-3">
+            <%= link_to "Create", "#", class: "inline-flex items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-gray-500" %>
+            <%= link_to "Edit", "#", class: "inline-flex items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50" %>
+          </div>
+        </details>
+
+        <details class="group py-1">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold marker:content-none">
+            Activities
+            <i class="ti ti-chevron-down text-slate-500 transition-transform group-open:rotate-180" aria-hidden="true"></i>
+          </summary>
+          <div class="mb-4 flex gap-3 pb-4 pl-3">
+            <%= link_to "Create", "#", class: "inline-flex items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-gray-500" %>
+            <%= link_to "Edit", "#", class: "inline-flex items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50" %>
+          </div>
+        </details>
       </nav>
 
         <%= link_to "Logout", logout_sessions_path, method: :get, data: { confirm: "Are you sure you want to logout?", turbo_frame: "_top" }, title: "Logout will be connected when its route is added", class: "rounded-md border border-gray-200 px-3 py-2 mt-5 text-sm font-medium text-slate-400" %>

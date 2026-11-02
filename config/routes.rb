@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "languages/index"
   mount RailsIcons::Engine, at: "/rails_icons"
   root to: "sessions#new"
 
@@ -15,6 +16,9 @@ Rails.application.routes.draw do
       get :languages
     end
   end
-  resources :languages
+  resources :languages do
+    resources :courses, only: [ :edit, :update ]
+  end
   resources :settings, only: [ :index ]
+  resources :courses, only: [ :index, :show, :new, :create ]
 end

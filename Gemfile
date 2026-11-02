@@ -57,6 +57,8 @@ group :development, :test do
 
   gem "guard-livereload", "~> 2.5", require: false
 
+  gem "guard-minitest"
+
   gem "rack-livereload"
 end
 

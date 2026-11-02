@@ -1,0 +1,7 @@
+                                 courses GET    /courses(.:format)                                                                                courses#index
+                                         POST   /courses(.:format)                                                                                courses#create
+                              new_course GET    /courses/new(.:format)                                                                            courses#new
+                             edit_course GET    /courses/:id/edit(.:format)                                                                       courses#edit
+                                  course GET    /courses/:id(.:format)                                                                            courses#show
+                                         PATCH  /courses/:id(.:format)                                                                            courses#update
+                                         PUT    /courses/:id(.:format)                                                                            courses#update

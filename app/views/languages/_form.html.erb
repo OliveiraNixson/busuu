@@ -1,0 +1,35 @@
+<div id="language_form" class="mx-auto w-full max-w-xl rounded-lg border border-gray-200 bg-white p-6 shadow-sm sm:p-8">
+    <div class="mb-6">
+        <h2 class="text-xl font-semibold text-gray-900">
+            <%= language.persisted? ? "Edit Language" : "New Language" %>
+        </h2>
+    </div>
+
+    <%= simple_form_for language, html: { class: "space-y-5" } do |f| %>
+        <%= f.input :name,
+            label: "Language name",
+            placeholder: "e.g., English",
+            input_html: {
+                class: "w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+            },
+            label_html: {
+                class: "mb-2 block text-sm font-medium text-gray-700"
+            } %>
+
+        <%= f.input :flag,
+            label: "Flag code",
+            placeholder: "e.g., us",
+            input_html: {
+                class: "w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+            },
+            label_html: {
+                class: "mb-2 block text-sm font-medium text-gray-700"
+            } %>
+
+        <div class="flex justify-end border-t border-gray-100 pt-5 mt-5">
+            <%= f.button :submit,
+                "Save language",
+                class: "cursor-pointer rounded-lg bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" %>
+        </div>
+    <% end %>
+</div>

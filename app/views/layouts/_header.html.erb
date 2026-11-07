@@ -6,10 +6,20 @@
             B
         </div>
         <% end %>
-        <div class="items-center gap-4 text-sm font-medium text-slate-600 md:flex">
-            <%= link_to "Learn", root_path, class: "transition hover:text-blue-600 text-slate-600" %>
-            <%= link_to "Courses", courses_path, class: "transition hover:text-blue-600" %>
-            <%= link_to "Levels", root_path, class: "transition hover:text-blue-600" %>
+        <div class="items-center text-4xs gap-4 font-bold text-slate-600 md:flex">
+            <%= link_to root_path, class: "flex flex-row items-center gap-2 transition hover:text-blue-600 text-slate-600" do %>
+              <i class="ti ti-book text-lg"></i>
+              <span>Learn</span>
+            <% end %>
+            <%= link_to courses_path, class: "flex flex-row items-center gap-2 transition hover:text-blue-600 text-slate-600" do %>
+              <i class="ti ti-library text-lg"></i>
+              <span>Courses</span>
+            <% end %>
+
+            <%= link_to root_path, class: "flex flex-row items-center gap-2 transition hover:text-blue-600 text-slate-600" do %>
+              <i class="ti ti-users text-lg"></i>
+              <span>Community</span>
+            <% end %>
         </div>
     </div>
 

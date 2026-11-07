@@ -1,0 +1,13 @@
+                         languages_index GET    /languages/index(.:format)                                                                        languages#index
+                         languages_users GET    /users/languages(.:format)                                                                        users#languages
+                    edit_language_course GET    /languages/:language_id/courses/:id/edit(.:format)                                                courses#edit
+                         language_course PATCH  /languages/:language_id/courses/:id(.:format)                                                     courses#update
+                                         PUT    /languages/:language_id/courses/:id(.:format)                                                     courses#update
+                               languages GET    /languages(.:format)                                                                              languages#index
+                                         POST   /languages(.:format)                                                                              languages#create
+                            new_language GET    /languages/new(.:format)                                                                          languages#new
+                           edit_language GET    /languages/:id/edit(.:format)                                                                     languages#edit
+                                language GET    /languages/:id(.:format)                                                                          languages#show
+                                         PATCH  /languages/:id(.:format)                                                                          languages#update
+                                         PUT    /languages/:id(.:format)                                                                          languages#update
+                                         DELETE /languages/:id(.:format)                                                                          languages#destroy

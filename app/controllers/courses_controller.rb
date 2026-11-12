@@ -1,9 +1,10 @@
 class CoursesController < ApplicationController
-  before_action :set_language, only: [ :edit, :update ]
+  before_action :set_language, only: [ :edit, :update, :index ]
   before_action :set_course, only: [ :show, :update ]
 
   def index
-    @courses = Course.includes(:language).order(:name)
+    current_user.update(current_language: @language)
+    @courses = @language.courses.order(:name)
   end
 
   def edit

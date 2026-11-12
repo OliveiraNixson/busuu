@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [ :update, :destroy ]
+  before_action :set_user, only: [ :update, :destroy, :update_language ]
 
   # GET /users
   def index
@@ -56,12 +56,34 @@ class UsersController < ApplicationController
     @not_learning_languages = Language.all - @learning_languages
   end
 
+  def update_language
+    language = Language.find(params[:language_id])
+    current_user.languages << language
+    current_user.current_language = language
+    if current_user.save
+      flash[:notice] = "Learning now #{language.name}!"
+      respond_to do |format|
+        format.html { redirect_to language_courses_path(language), notice: "Learning now #{language.name}!" }
+        format.turbo_stream do
+          flash.now[:notice] = "Learning now #{language.name}!"
+          render turbo_stream:[ 
+            turbo_stream.update("modalcontainer", ""),
+            turbo_stream.replace("header", partial: "layouts/header"),
+            turbo_stream.append("flash", partial: "layouts/flash") ]
+        end
+      end    
+    else
+      flash[:alert] = "Errors: #{current_user.errors.full_messages.join(", ")}"
+      respond_to do |format|
+        format.html { redirect_to pages_path, alert: "Errors: #{current_user.errors.full_messages.join(", ")}" }
+      end
+    end
+  end
+
   private
 
   def set_user
-    @user = User.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-    render json: { error: "Usuário não encontrado" }, status: :not_found
+    @user = User.find(params[:id] || params[:user_id])
   end
 
   # Strong Parameters para criação

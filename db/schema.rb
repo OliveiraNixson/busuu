@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_21_181045) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_12_221822) do
   create_table "activities", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "lesson_id", null: false
     t.string "name"
     t.string "type"
     t.datetime "updated_at", null: false
+    t.boolean "done", default: false
     t.index ["lesson_id"], name: "index_activities_on_lesson_id"
   end
 
@@ -43,6 +44,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_21_181045) do
     t.string "name"
     t.integer "section_id", null: false
     t.datetime "updated_at", null: false
+    t.boolean "done", default: false
     t.index ["course_id"], name: "index_lessons_on_course_id"
     t.index ["language_id"], name: "index_lessons_on_language_id"
     t.index ["section_id"], name: "index_lessons_on_section_id"

@@ -77,4 +77,7 @@ end
 gem "simple_form", "~> 5.4"
 
 gem "bcrypt", "~> 3.1"
+
 gem "rails_icons", "~> 1.10"
+
+gem "draper"

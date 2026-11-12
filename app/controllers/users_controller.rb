@@ -66,12 +66,12 @@ class UsersController < ApplicationController
         format.html { redirect_to language_courses_path(language), notice: "Learning now #{language.name}!" }
         format.turbo_stream do
           flash.now[:notice] = "Learning now #{language.name}!"
-          render turbo_stream:[ 
+          render turbo_stream: [
             turbo_stream.update("modalcontainer", ""),
             turbo_stream.replace("header", partial: "layouts/header"),
             turbo_stream.append("flash", partial: "layouts/flash") ]
         end
-      end    
+      end
     else
       flash[:alert] = "Errors: #{current_user.errors.full_messages.join(", ")}"
       respond_to do |format|

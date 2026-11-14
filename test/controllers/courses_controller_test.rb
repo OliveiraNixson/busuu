@@ -2,40 +2,38 @@ require "test_helper"
 
 class CoursesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @course = courses(:one)
+    @language = languages(:one)
+    @courses = @language.courses
+    @course = @courses.first
   end
 
 
   test "should get index" do
-    get courses_path
+    post users_path, params: { user: { name: "John Doe", email: "name@email.com", password: "123456", password_confirmation: "123456", current_language: @language.id   } }
+    post sessions_path, params: { user: { email: "name@email.com", password: "123456" } }
+    get language_courses_path(@course.language)
     assert_response :success
   end
 
   test "should get edit" do
-    get edit_language_course_path(@course.language, @course)
+    get edit_language_course_path(language_id: @course.language.id, id: @course.id)
     assert_response :success
   end
 
   test "should get new" do
-    get new_course_path
+    get new_language_course_path(language_id: @course.language.id)
     assert_response :success
   end
 
   test "should get create" do
-    assert_difference("Course.count") do
-      post courses_path, params: { course: { name: "New Course", description: "A new course description", language_id: @course.language_id } }
+    assert_difference("Course.count", 1) do
+      post language_courses_path(@language), params: { course: { name: "New Course", description: "A new course description" } }
     end
   end
 
   test "should update course" do
-    puts "Updating course with ID: #{@course.id} and language ID: #{@course.language_id}"
-    patch language_course_path(@course.language, @course), params: { course: { name: "New Course", description: "A new course descri  ption" } }
+    patch language_course_path(@course.language, @course), params: { course: { name: "New Course", description: "A new course description" } }
 
-    assert_redirected_to course_path(@course)
+    assert_redirected_to language_courses_path(@course.language)
   end
-
-  # test "should get show" do
-  #   get courses_show_url
-  #   assert_response :success
-  # end
 end

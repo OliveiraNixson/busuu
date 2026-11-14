@@ -6,6 +6,8 @@ class User < ApplicationRecord
   validates :email, presence: true
   validates :email, uniqueness: true
 
+  belongs_to :current_language, class_name: "Language", foreign_key: "current_language_id", optional: true
+
   has_many :user_languages
   has_many :languages, through: :user_languages
 

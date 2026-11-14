@@ -12,13 +12,13 @@ Rails.application.routes.draw do
     end
   end
   resources :users, except: [ :show ] do
+  post :update_language
     collection do
       get :languages
     end
   end
   resources :languages, except: [ :show ] do
-    resources :courses, only: [ :edit, :update ]
+    resources :courses, only: [ :new, :create, :edit, :update, :index ]
   end
   resources :settings, only: [ :index ]
-  resources :courses, only: [ :index, :show, :new, :create ]
 end

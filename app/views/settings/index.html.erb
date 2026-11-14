@@ -9,16 +9,6 @@
       </div>
 
       <nav aria-label="Settings sections" class="divide-y divide-slate-200">
-        <details class="group py-1">
-          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold marker:content-none">
-            Courses
-            <i class="ti ti-chevron-down text-slate-500 transition-transform group-open:rotate-180" aria-hidden="true"></i>
-          </summary>
-          <div class="mb-4 flex gap-3 pb-4 pl-3">
-            <%= link_to "Create", new_course_path, data:{ turbo_frame: "modalcontainer" }, class: "inline-flex items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50" %>
-            <%= link_to "Edit", languages_path(key: "course"), data: { turbo_frame: "modalcontainer" }, class: "inline-flex items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50" %>
-          </div>
-        </details>
 
         <details class="group py-1">
           <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold marker:content-none">
@@ -26,8 +16,19 @@
             <i class="ti ti-chevron-down text-slate-500 transition-transform group-open:rotate-180" aria-hidden="true"></i>
           </summary>
           <div class="mb-4 flex gap-3 pb-4 pl-3">
-            <%= link_to "Create", new_language_path, data: { turbo_frame: "modalcontainer" }, class: "inline-flex items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-gray-500" %>
-            <%= link_to "Edit", languages_path(key: "language"), data: { turbo_frame: "modalcontainer" }, class: "inline-flex items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50" %>
+            <%= link_to "Create", new_language_path, data: { turbo_frame: "modalcontainer" }, class: "inline-flex items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-gray-300" %>
+            <%= link_to "Edit", languages_path(key: ["language", ""]), data: { turbo_frame: "modalcontainer" }, class: "inline-flex items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50" %>
+          </div>
+        </details>
+
+        <details class="group py-1">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold marker:content-none">
+            Courses
+            <i class="ti ti-chevron-down text-slate-500 transition-transform group-open:rotate-180" aria-hidden="true"></i>
+          </summary>
+          <div class="mb-4 flex gap-3 pb-4 pl-3">
+            <%= link_to "Create", languages_path(key: ["course", "new"]), data:{ turbo_frame: "modalcontainer" }, class: "inline-flex items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50" %>
+            <%= link_to "Edit", languages_path(key: ["course", "edit"]), data: { turbo_frame: "modalcontainer" }, class: "inline-flex items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50" %>
           </div>
         </details>
 
@@ -37,7 +38,29 @@
             <i class="ti ti-chevron-down text-slate-500 transition-transform group-open:rotate-180" aria-hidden="true"></i>
           </summary>
           <div class="mb-4 flex gap-3 pb-4 pl-3">
-            <%= link_to "Create", "#", class: "inline-flex items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-gray-500" %>
+            <%= link_to "Create", "#", class: "inline-flex items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-gray-300" %>
+            <%= link_to "Edit", "#", class: "inline-flex items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50" %>
+          </div>
+        </details>
+
+        <details class="group py-1">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold marker:content-none">
+            Sections
+            <i class="ti ti-chevron-down text-slate-500 transition-transform group-open:rotate-180" aria-hidden="true"></i>
+          </summary>
+          <div class="mb-4 flex gap-3 pb-4 pl-3">
+            <%= link_to "Create", "#", class: "inline-flex items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-gray-300" %>
+            <%= link_to "Edit", "#", class: "inline-flex items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50" %>
+          </div>
+        </details>
+
+        <details class="group py-1">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold marker:content-none">
+            Lessons
+            <i class="ti ti-chevron-down text-slate-500 transition-transform group-open:rotate-180" aria-hidden="true"></i>
+          </summary>
+          <div class="mb-4 flex gap-3 pb-4 pl-3">
+            <%= link_to "Create", "#", class: "inline-flex items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-gray-300" %>
             <%= link_to "Edit", "#", class: "inline-flex items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50" %>
           </div>
         </details>
@@ -48,7 +71,7 @@
             <i class="ti ti-chevron-down text-slate-500 transition-transform group-open:rotate-180" aria-hidden="true"></i>
           </summary>
           <div class="mb-4 flex gap-3 pb-4 pl-3">
-            <%= link_to "Create", "#", class: "inline-flex items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-gray-500" %>
+            <%= link_to "Create", "#", class: "inline-flex items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-gray-300" %>
             <%= link_to "Edit", "#", class: "inline-flex items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50" %>
           </div>
         </details>

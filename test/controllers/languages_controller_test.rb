@@ -1,8 +1,11 @@
 require "test_helper"
 
 class LanguagesControllerTest < ActionDispatch::IntegrationTest
+  setup do
+  end
+
   test "should get index" do
-    get languages_index_url
+    get languages_index_path(key: [ "value", "" ])
     assert_response :success
   end
 

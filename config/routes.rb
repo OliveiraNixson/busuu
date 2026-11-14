@@ -18,8 +18,7 @@ Rails.application.routes.draw do
     end
   end
   resources :languages, except: [ :show ] do
-    resources :courses, only: [ :edit, :update, :index ]
+    resources :courses, only: [ :new, :create, :edit, :update, :index ]
   end
   resources :settings, only: [ :index ]
-  resources :courses, only: [ :new, :create ]
 end

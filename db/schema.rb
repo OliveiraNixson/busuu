@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_12_221822) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_19_225431) do
   create_table "activities", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "lesson_id", null: false
@@ -27,6 +27,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_12_221822) do
     t.integer "language_id", null: false
     t.string "name"
     t.datetime "updated_at", null: false
+    t.integer "current_level_id"
+    t.index ["current_level_id"], name: "index_courses_on_current_level_id"
     t.index ["language_id"], name: "index_courses_on_language_id"
   end
 
@@ -72,6 +74,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_12_221822) do
     t.integer "level_id", null: false
     t.string "name"
     t.datetime "updated_at", null: false
+    t.integer "course_id"
+    t.index ["course_id"], name: "index_sections_on_course_id"
     t.index ["level_id"], name: "index_sections_on_level_id"
   end
 
@@ -96,11 +100,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_12_221822) do
 
   add_foreign_key "activities", "lessons"
   add_foreign_key "courses", "languages"
+  add_foreign_key "courses", "levels", column: "current_level_id"
   add_foreign_key "lessons", "courses"
   add_foreign_key "lessons", "languages"
   add_foreign_key "lessons", "sections"
   add_foreign_key "level_courses", "courses"
   add_foreign_key "level_courses", "levels"
+  add_foreign_key "sections", "courses"
   add_foreign_key "sections", "levels"
   add_foreign_key "user_languages", "languages"
   add_foreign_key "user_languages", "users"

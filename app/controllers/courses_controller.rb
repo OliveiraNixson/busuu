@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
-  before_action :set_language
-  before_action :set_course, only: [ :edit, :show, :update ]
+  before_action :set_language, except: [ :show, :timeline ]
+  before_action :set_course, only: [ :edit, :show, :update, :timeline ]
 
   def index
     current_user.update(current_language: @language)
@@ -63,7 +63,17 @@ class CoursesController < ApplicationController
     end
   end
 
+  def timeline
+  end
+
   def show
+    @course.update(current_level_id: params[:current_level]) if params[:current_level].present? 
+    @sections = Section.where(level_id: @course.current_level)
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream 
+    end
   end
 
   private
@@ -73,7 +83,7 @@ class CoursesController < ApplicationController
   end
 
   def set_course
-    @course = Course.find(params[:id])
+    @course = Course.find(params[:id] || params[:course_id])
   end
 
   def course_params

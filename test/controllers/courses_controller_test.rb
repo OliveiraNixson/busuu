@@ -12,6 +12,18 @@ class CoursesControllerTest < ActionDispatch::IntegrationTest
     post users_path, params: { user: { name: "John Doe", email: "name@email.com", password: "123456", password_confirmation: "123456", current_language: @language.id   } }
     post sessions_path, params: { user: { email: "name@email.com", password: "123456" } }
     get language_courses_path(@course.language)
+
+  test "show renders sections and completed lesson progress for the current level" do
+    @course.update!(current_level: levels(:one))
+    lessons(:one).update!(done: true)
+
+    get language_course_path(@language, @course)
+
+    assert_response :success
+    assert_select "h2", text: sections(:one).name
+    assert_select '[role="progressbar"][aria-valuenow="100"]'
+    assert_select "span", text: "1 de 1 lessons concluídas"
+  end
     assert_response :success
   end
 

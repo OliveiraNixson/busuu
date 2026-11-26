@@ -1,1 +1,5 @@
 @import "tailwindcss";
+@import "../stylesheets/config/variables.css";
+@import "../stylesheets/components/btn.css";
+@import "../stylesheets/components/progress_bar.css";
+@import "../stylesheets/components/circular_progress_bar.css";

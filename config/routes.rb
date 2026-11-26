@@ -20,5 +20,10 @@ Rails.application.routes.draw do
   resources :languages, except: [ :show ] do
     resources :courses, only: [ :new, :create, :edit, :update, :index ]
   end
+  resources :courses, only: [ :show ] do
+    collection do
+      get :timeline
+    end
+  end
   resources :settings, only: [ :index ]
 end

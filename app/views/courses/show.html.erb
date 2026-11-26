@@ -1,4 +1,12 @@
-<div>
-  <h1 class="font-bold text-4xl">Courses#show</h1>
-  <p>Find me in app/views/courses/show.html.erb</p>
+<div class="w-full flex flex-col min-h-screen gap-6 bg-white p-6">
+  <h1 class="text-4xl font-bold"><%= @course.name %></h1>
+  <%= turbo_frame_tag "id", class:"flex flex-col gap-4" do %>  
+    <%= form_with model: @course, url: course_path(@course), method: :get ,html: { class: "w-full mt-4 ", id:"timeline_form" }, data: { turbo_stream: true } do |f| %>
+      <%= select_tag :current_level, options_for_select(@course.levels.map { |l| [l.decorate.description, l.id] }, @course.current_level), class: "w-full rounded-full border border-gray-300 bg-white px-4 py-4 text-sm text-gray-700 shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 hover:border-gray-400 cursor-pointer", 
+          onchange:"requestSubmit()"
+          %>
+    <% end %>    
+    <%= render partial:"sections/section", locals: { sections: @sections} %>
+  <% end %> 
+  </div>
 </div>

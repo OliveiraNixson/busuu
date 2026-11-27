@@ -64,9 +64,6 @@ class CoursesController < ApplicationController
   end
 
   def timeline
-  end
-
-  def show
     @course.update(current_level_id: params[:current_level]) if params[:current_level].present? 
     @sections = Section.where(level_id: @course.current_level)
 
@@ -74,6 +71,9 @@ class CoursesController < ApplicationController
       format.html
       format.turbo_stream 
     end
+  end
+
+  def show
   end
 
   private

@@ -1,0 +1,58 @@
+<div id="section_form" class="mx-auto w-full max-w-2xl rounded-lg border border-gray-200 bg-white p-6 shadow-sm sm:p-8">
+  <div class="mb-8">
+    <h2 class="text-2xl font-semibold text-gray-900">
+      <%= section.persisted? ? "Edit Section" : "New Section" %>
+    </h2>
+  </div>
+
+  <%= simple_form_for section, html: { class: "space-y-6" } do |f| %>
+    <%= f.input :name,
+      label: "Section name",
+      placeholder: "e.g., Greetings",
+      input_html: {
+        class: "w-full rounded-lg border border-gray-300 px-4 py-3 text-sm shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+      },
+      label_html: {
+        class: "mb-2 block text-sm font-medium text-gray-700"
+      } %>
+
+    <%= f.association :level,
+      collection: Level.order(:order),
+      label: "Level",
+      prompt: "Select a level",
+      input_html: {
+        class: "w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+      },
+      label_html: {
+        class: "mb-2 block text-sm font-medium text-gray-700"
+      } %>
+
+    <div data-controller="course-filter" class="space-y-6">
+      <div>
+        <%= label_tag :section_language_id, "Language", class: "mb-2 block text-sm font-medium text-gray-700" %>
+        <%= select_tag :section_language_id,
+          options_from_collection_for_select(Language.order(:name), :id, :name, section.course&.language_id),
+          include_blank: "Select a language",
+          id: "section_language_id",
+          class: "w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100",
+          data: {
+            "course-filter-target": "language",
+            action: "change->course-filter#filterCourses"
+          } %>
+      </div>
+
+      <div>
+        <%= f.label :course_id, "Course", class: "mb-2 block text-sm font-medium text-gray-700" %>
+        <%= f.select :course_id,
+          options_for_select(Course.order(:name).map { |course| [ course.name, course.id, { data: { language_id: course.language_id } } ] }, section.course_id),
+          { include_blank: "Select a course" },
+          class: "w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100",
+          data: { "course-filter-target": "course" } %>
+      </div>
+    </div>
+
+    <div class="flex justify-end pt-6">
+      <%= f.button :submit,"Save section",class: "cursor-pointer rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" %>
+    </div>
+  <% end %>
+</div>

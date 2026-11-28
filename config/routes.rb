@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     resources :courses, only: [ :new, :create, :edit, :update, :index ]
   end
   resources :courses, only: [ :show ] do
-    resources :sections, only: [:index]
+    resources :sections, only: [ :index ]
     member do
       get :timeline
     end

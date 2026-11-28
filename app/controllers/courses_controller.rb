@@ -64,12 +64,12 @@ class CoursesController < ApplicationController
   end
 
   def timeline
-    @course.update(current_level_id: params[:current_level]) if params[:current_level].present? 
+    @course.update(current_level_id: params[:current_level]) if params[:current_level].present?
     @sections = Section.where(level_id: @course.current_level)
 
     respond_to do |format|
       format.html
-      format.turbo_stream 
+      format.turbo_stream
     end
   end
 
@@ -87,6 +87,6 @@ class CoursesController < ApplicationController
   end
 
   def course_params
-    params.require(:course).permit(:name, :language_id, :description, level_ids: [])
+    params.require(:course).permit(:name, :language_id, :description, :current_level_id, level_ids: [])
   end
 end

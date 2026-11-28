@@ -40,7 +40,7 @@ class SectionsController < ApplicationController
     end
 
     def languages
-        @languages = Language.all 
+        @languages = Language.all
     end
 
     private

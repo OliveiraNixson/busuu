@@ -1,0 +1,24 @@
+<%= turbo_frame_tag "modalcontainer" do %>
+    <%= render "layouts/float_modal" do %>
+        <div class="w-full max-w-lg p-6">
+            <h2 class="mb-4 text-xl font-semibold text-gray-900">Sections: <%= @course.name %></h2>
+
+            <% if @sections.any? %>
+                <ul class="divide-y divide-gray-200">
+                    <% @sections.each do |section| %>
+                        <li>
+                            <%= link_to edit_section_path(section),
+                                data: { turbo_frame: "modalcontainer" },
+                                class: "flex items-center justify-between gap-4 py-4 text-sm transition hover:text-blue-600" do %>
+                                <span class="font-medium"><%= section.name %></span>
+                                <span class="text-gray-500"><%= section.level.name %></span>
+                            <% end %>
+                        </li>
+                    <% end %>
+                </ul>
+            <% else %>
+                <p class="py-4 text-sm text-gray-500">No sections in this course yet.</p>
+    <% end %>
+        </div>
+    <% end %>
+<% end %>

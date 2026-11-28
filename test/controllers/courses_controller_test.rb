@@ -5,6 +5,7 @@ class CoursesControllerTest < ActionDispatch::IntegrationTest
     @language = languages(:one)
     @courses = @language.courses
     @course = @courses.first
+    @level = levels(:one)
   end
 
 
@@ -12,6 +13,21 @@ class CoursesControllerTest < ActionDispatch::IntegrationTest
     post users_path, params: { user: { name: "John Doe", email: "name@email.com", password: "123456", password_confirmation: "123456", current_language: @language.id   } }
     post sessions_path, params: { user: { email: "name@email.com", password: "123456" } }
     get language_courses_path(@course.language)
+    assert_response :success
+  end
+
+  test "timeline renders sections and completed lesson progress for the current level" do
+    @course.update!(current_level: levels(:one))
+    lessons(:one).update!(done: true)
+
+    get timeline_course_path(@course)
+
+    assert_response :success
+  end
+
+  test "show redirects to the course timeline" do
+    get timeline_course_path(@course)
+
     assert_response :success
   end
 
@@ -27,12 +43,12 @@ class CoursesControllerTest < ActionDispatch::IntegrationTest
 
   test "should get create" do
     assert_difference("Course.count", 1) do
-      post language_courses_path(@language), params: { course: { name: "New Course", description: "A new course description" } }
+      post language_courses_path(@language), params: { course: { name: "New Course", description: "A new course description", current_level_id: @level.id } }
     end
   end
 
   test "should update course" do
-    patch language_course_path(@course.language, @course), params: { course: { name: "New Course", description: "A new course description" } }
+    patch language_course_path(@course.language, @course), params: { course: { name: "New Course", current_level_id: @level.id  } }
 
     assert_redirected_to language_courses_path(@course.language)
   end

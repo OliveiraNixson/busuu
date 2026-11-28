@@ -1,0 +1,74 @@
+.skill-circular {
+    --size: clamp(50px, 10vw, 100px);
+    --progress: 75;
+
+    width: var(--size);
+    aspect-ratio: 1;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.outer-circular {
+    width: 100%;
+    height: 100%;
+    padding: 12.5%;
+    box-sizing: border-box;
+    border-radius: 50%;
+
+    box-shadow:
+        6px 6px 10px rgba(0, 0, 0, 0.15),
+        -6px -6px 10px rgba(255, 255, 255, 0.7);
+}
+
+.inner-circular {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow:
+        inset 6px 6px 6px rgba(0, 0, 0, 0.15),
+        inset -4px -4px 6px rgba(255, 255, 255, 0.7);
+}
+
+.number-circular {
+    font-size: calc(var(--size) * 0.15);
+    font-weight: 600;
+    color: #555;
+}
+
+.skill-circular svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.progress-circle {
+    fill: none;
+    stroke: url(#GradientColor);
+    stroke-width: 10;
+    stroke-linecap: round;
+
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+
+    animation: progressAnimation 2s ease-out forwards;
+}
+
+@keyframes progressAnimation {
+    100%{
+        stroke-dashoffset: 90;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .progress-circle {
+        animation: none;
+        stroke-dashoffset: calc(100 - var(--progress));
+    }
+}
